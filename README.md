@@ -5,11 +5,6 @@ The official codebase for **RobMRAG: 3D Gaussian Splatting-Enhanced Multimodal R
 
 Existing end-to-end approaches of robotic manipulation often lack generalization to unseen objects or tasks due to limited data and poor interpretability. While recent Multimodal Large Language Models (MLLMs) demonstrate strong commonsense reasoning, they struggle with geometric and spatial understanding required for pose prediction. In this paper, we propose RobMRAG, a 3D Gaussian Splatting-Enhanced Multimodal Retrieval-Augmented Generation (MRAG) framework for zero-shot robotic manipulation.
 
-**Key Contributions:**
-- We propose a Multimodal Retrieval-Augmented Generation (MRAG) framework for zero-shot robotic manipulation, which enables manipulation on unseen objects through a multi-source knowledge base.
-- We integrate a 3D-Aware Pose Refinement module into the MRAG framework, enabling precise pose alignment between reference and target objects, thereby enhancing the geometric consistency of the retrieved results.
-- Experimental results demonstrate that, on a test set comprising 30 categories of household objects, the proposed method achieves a 7.76% improvement in success rate compared with the SOTA zero-shot baseline, and a 6.54% improvement compared with the SOTA supervised baseline.
-
 ## Acknowledgement
 This repo benefits from [ManipLLM](https://github.com/clorislili/ManipLLM), [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory), and [TRELLIS](https://github.com/microsoft/TRELLIS). Thanks for their wonderful works.
 
