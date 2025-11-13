@@ -6,7 +6,7 @@ The official codebase for **RobMRAG: 3D Gaussian Splatting-Enhanced Multimodal R
 Existing end-to-end approaches of robotic manipulation often lack generalization to unseen objects or tasks due to limited data and poor interpretability. While recent Multimodal Large Language Models (MLLMs) demonstrate strong commonsense reasoning, they struggle with geometric and spatial understanding required for pose prediction. In this paper, we propose RobMRAG, a 3D Gaussian Splatting-Enhanced Multimodal Retrieval-Augmented Generation (MRAG) framework for zero-shot robotic manipulation.
 
 ## Acknowledgement
-This repo benefits from [ManipLLM](https://github.com/clorislili/ManipLLM), [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) and [TRELLIS](https://github.com/microsoft/TRELLIS). Thanks for their wonderful works.
+This repo benefits from [ManipLLM](https://github.com/clorislili/ManipLLM) and [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory). Thanks for their wonderful works.
 
 ## Setup
 1) conda create --name robmrag python=3.8
