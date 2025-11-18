@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# Models (large files)
+models/
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+
+# Data directories (large files)
+data_collection/data/
+*.h5
+*.hdf5
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Conda
+.conda/
+
+# Test results
+test/test_results/
+test_results/
+
+# Training JSON files
+collect_train_data/data/train_json/
+*.json
+!requirements.txt
+!package.json
+!tsconfig.json
+!*.config.json
+
+# LLaMA-Factory (users should clone it themselves)
+LLaMA-Factory/
+
+# Data collection assets
+data_collection/asset/
+
+# Clash config (if contains sensitive info)
+clash-for-linux-install-master/
+

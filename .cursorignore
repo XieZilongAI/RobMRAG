@@ -1,0 +1,7 @@
+# Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)
+data_collection/asset/original_sapien_dataset/dataset/
+data_collection/data/
+test/test_results/
+train/output/
+*.log           # File extension
+**/logs         # Nested directories

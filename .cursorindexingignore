@@ -1,0 +1,4 @@
+data_collection/asset/original_sapien_dataset/dataset/
+data_collection/data/
+test/test_results/
+train/output/
