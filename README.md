@@ -68,6 +68,7 @@ This command will first generate the training dataset and then generate the test
 This script performs three steps:
 1. **Extract RAG knowledge**: Extracts knowledge from test data (`test_data_ori`) to create the initial knowledge base (`rag_knowledge_base_1`), including contact point images, pose visualization images, and pose parameters.
 2. **Balance knowledge base**: Selects a balanced subset (default: 800 samples) from the knowledge base, ensuring even distribution across object categories, and saves to `balanced_rag_knowledge_base_1`.
+3. **Check and clean**: Validates the balanced knowledge base by removing incomplete samples (those with fewer than 3 files or containing empty image files) and displays category distribution statistics.
 
 The final balanced knowledge base will be saved at `./data_collection/data/balanced_rag_knowledge_base_1/` and can be used for training data generation and testing.
 
@@ -207,5 +208,4 @@ WANDB_DISABLED=true CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train examples
 **Note:** 
 - Training requires at least 24GB GPU memory per GPU. Multi-GPU training is recommended for better performance.
 - The trained LoRA weights will be saved in the `output_dir` specified in the configuration file.
-
 
