@@ -13,7 +13,7 @@ python test_entireprocess_in_sapien.py \
  --num_processes 10 \
  --out_dir "$OUPUT_DIR" \
  --no_gui \
- --use_mask False
+ --use_mask Ture
 
 # step3: calculate success rate
 python cal_test_mani_succ_rate.py \
