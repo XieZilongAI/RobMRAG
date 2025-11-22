@@ -65,12 +65,13 @@ This command will first generate the training dataset and then generate the test
   bash scripts/build_rag_knowledge_base.sh
   ```
 
-This script performs three steps:
-1. **Extract RAG knowledge**: Extracts knowledge from test data (`test_data_ori`) to create the initial knowledge base (`rag_knowledge_base_1`), including contact point images, pose visualization images, and pose parameters.
-2. **Balance knowledge base**: Selects a balanced subset (default: 800 samples) from the knowledge base, ensuring even distribution across object categories, and saves to `balanced_rag_knowledge_base_1`.
-3. **Check and clean**: Validates the balanced knowledge base by removing incomplete samples (those with fewer than 3 files or containing empty image files) and displays category distribution statistics.
+Example with custom parameters:
+```bash
+cd ./data_collection/code
+bash scripts/build_rag_knowledge_base.sh --samples_per_class 100 --output_dir ../data/rag_knowledge_base_100
+```
 
-The final balanced knowledge base will be saved at `./data_collection/data/balanced_rag_knowledge_base_1/` and can be used for training data generation and testing.
+The final balanced knowledge base will be saved at the specified output directory and can be used for training data generation and testing.
 
 ## Model Training
 
