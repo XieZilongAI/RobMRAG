@@ -23,6 +23,7 @@ from peft import PeftModel,PeftConfig
 
 parser = ArgumentParser()
 parser.add_argument('--data_dir', type=str)
+parser.add_argument('--rag_knowledge_base_path', type=str)
 parser.add_argument('--out_dir', type=str)
 parser.add_argument('--adapter_dir', type=str, default="none")
 parser.add_argument('--action', type=str, help='llama directory')
@@ -30,10 +31,11 @@ conf = parser.parse_args()
 # Configuration parameters
 device = 'cuda' if torch.cuda.is_available() else "cpu"
 data_dir = conf.data_dir  # Input data directory
+rag_knowledge_base_path = conf.rag_knowledge_base_path
 out_dir = conf.out_dir  # Output directory
 action = conf.action
 
-model_path = "/data2/huggingface_pretrained_llms/Qwen2-VL-7B-Instruct"
+model_path = "/data0/huggingface_models/Qwen2-VL-7B-Instruct"
 # Load model and processor
 model = Qwen2VLForConditionalGeneration.from_pretrained(
     model_path, torch_dtype="auto", device_map="auto"
@@ -53,7 +55,6 @@ image_model = uform.get_model('unum-cloud/uform-vl-english').eval().to(device)
 # Load VGG19 feature extractor
 vgg19_model = vgg19(pretrained=True).features.eval().to(device)
 processor = AutoProcessor.from_pretrained(model_path)
-rag_knowledge_base_path = '../data_collection/data/balanced_rag_knowledge_base_1'
 # Set different prompt text based on conditions
 if '-ori' in conf.adapter_dir:
     prompt_text = "Specify the contact point and orientation of pushing the object."

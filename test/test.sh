@@ -2,8 +2,9 @@ export PYTHONPATH=../../RobMRAG
 OUPUT_DIR='./test_results/result_ori_qwen2_zero_shot'
 
 # step1: model inference
-CUDA_VISIBLE_DEVICES=7 python qwen_test_rag.py \
+CUDA_VISIBLE_DEVICES=0 python qwen_test_rag.py \
  --data_dir ../data_collection/data/test_data \
+ --rag_knowledge_base_path ../data_collection/data/rag_knowledge_base_1 \
  --out_dir "$OUPUT_DIR" \
  --action pulling
 

@@ -1,39 +1,43 @@
 #!/bin/bash
-# Script for building balanced RAG knowledge base
-# This script performs three steps:
-# 1. Extract RAG knowledge from test data
-# 2. Balance the knowledge base (select a smaller subset)
-# 3. Check and clean the balanced knowledge base
 
-echo "=========================================="
-echo "Building Balanced RAG Knowledge Base"
-echo "=========================================="
-echo ""
+TRAIN_DIR="/data0/xzl/ManipLLM/data_collection/data/train_data_dist4.0"
+TEST_DIR="/data0/xzl/ManipLLM/data_collection/data/test_data_dist4.0"
+OUTPUT_DIR="../data/rag_knowledge_base_dist4.0"
+SAMPLES_PER_CLASS=50
 
-# Step 1: Extract RAG knowledge from test data
-echo "Step 1: Extracting RAG knowledge from test data..."
-echo "Source: ../data/test_data_ori"
-echo "Target: ../data/rag_knowledge_base_1"
-python get_rag_knowledge.py
 
-if [ $? -ne 0 ]; then
-    echo "Error: Failed to extract RAG knowledge"
-    exit 1
-fi
-echo "Step 1 completed successfully!"
-echo ""
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --train_dir)
+            TRAIN_DIR="$2"
+            shift 2
+            ;;
+        --test_dir)
+            TEST_DIR="$2"
+            shift 2
+            ;;
+        --output_dir)
+            OUTPUT_DIR="$2"
+            shift 2
+            ;;
+        --samples_per_class)
+            SAMPLES_PER_CLASS="$2"
+            shift 2
+            ;;
+        -h|--help)
+            usage
+            ;;
+        *)
+            echo "Unknown parameter: $1"
+            usage
+            ;;
+    esac
+done
 
-# Step 2: Balance the knowledge base
-echo "Step 2: Balancing knowledge base..."
-echo "Source: ../data/rag_knowledge_base_1"
-echo "Target: ../data/balanced_rag_knowledge_base_1"
-echo "Sample number: 800"
-python balanced_test_data.py
 
-if [ $? -ne 0 ]; then
-    echo "Error: Failed to balance knowledge base"
-    exit 1
-fi
-echo "Step 2 completed successfully!"
-echo ""
+python build_rag_knowledge.py \
+    --train_dir "$TRAIN_DIR" \
+    --test_dir "$TEST_DIR" \
+    --output_dir "$OUTPUT_DIR" \
+    --samples_per_class "$SAMPLES_PER_CLASS"
 
