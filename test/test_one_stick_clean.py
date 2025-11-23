@@ -63,7 +63,7 @@ if not eval_conf.no_gui:
     env.set_controller_camera_pose(cam.pos[0], cam.pos[1], cam.pos[2], np.pi + cam_theta, -cam_phi)
 
 # load shape
-object_urdf_fn = '../data_collection/asset/original_sapien_dataset/dataset/%s/mobility.urdf' % shape_id
+object_urdf_fn = '/data0/xzl/ManipLLM/data_collection/asset/%s/mobility.urdf' % shape_id
 flog.write('object_urdf_fn: %s\n' % object_urdf_fn)
 object_material = env.get_material(4, 4, 0.01)
 state = replay_data['object_state']
@@ -169,6 +169,7 @@ def parse_direction(match_str):
     
     Extracts numeric values from a string using regex and divides them by 10
     to normalize the direction vector components.
+    Supports both integer and floating-point numbers.
     
     Args:
         match_str (str): String containing direction values extracted from text
@@ -176,7 +177,8 @@ def parse_direction(match_str):
     Returns:
         list: List of normalized direction values as floats
     """
-    numbers = re.findall(r'-?\s*\d+', match_str.replace(' ',''))
+    # Support floating-point numbers: -0.43, 0.71, etc.
+    numbers = re.findall(r'-?\d+\.?\d*', match_str.replace(' ', ''))
     return [float(num) / 10 for num in numbers]
 
 
