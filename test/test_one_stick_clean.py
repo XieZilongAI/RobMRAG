@@ -130,20 +130,20 @@ print('answer from model: ', result)
 # result = result["result"]
 object_link_ids = env.movable_link_ids
 gt_movable_link_mask = cam.get_movable_link_mask(object_link_ids)
-# method1
-# x, y = result.split('(')[1].split(')')[0].split(', ')
-# x, y = float(x), float(y)
+# method1 (zero shot)
+x, y = result.split('(')[1].split(')')[0].split(', ')
+x, y = float(x), float(y)
 
-# method2
-cp_str = re.search(r"\((.*?)\)", result).group(1)
-x, y = [float(x.replace(' ', '')) / 100 for x in cp_str.split(',')]
+# method2 (finetune)
+# cp_str = re.search(r"\((.*?)\)", result).group(1)
+# x, y = [float(x.replace(' ', '')) / 100 for x in cp_str.split(',')]
 # print("x,y:", x, y)
 
 if x > 1 or y > 1:  # If x, y are not normalized
     x, y = int(x), int(y)
 else:
     x, y = int(x * 336), int(y * 336)
-
+# print("contact point:", x, y)
 if eval_conf.use_mask == 'True':
     if gt_movable_link_mask[x, y] == 0:
         # print("gt_movable_link_mask==True")
@@ -156,20 +156,19 @@ gt_nor = cam.get_normal_map()
 Image.fromarray(((gt_nor + 1) / 2 * 255).astype(np.uint8)).save(os.path.join(out_dir, 'gt_nor.png'))
 
 
-# method1
-# d_x, d_y, d_z = result.split('[')[1].split(']')[0].split(', ')
-# d_x, d_y, d_z = float(d_x), float(d_y), float(d_z)
-# fd_x, fd_y, fd_z = result.split('[')[2].split(']')[0].split(', ')
-# fd_x, fd_y, fd_z = float(fd_x), float(fd_y), float(fd_z)
+# method1 (zero shot)
+d_x, d_y, d_z = result.split('[')[1].split(']')[0].split(', ')
+d_x, d_y, d_z = float(d_x), float(d_y), float(d_z)
+fd_x, fd_y, fd_z = result.split('[')[2].split(']')[0].split(', ')
+fd_x, fd_y, fd_z = float(fd_x), float(fd_y), float(fd_z)
 
-# method2
+# method2 (finetune)
 def parse_direction(match_str):
     """
     Parse direction values from a matched string and normalize them.
     
     Extracts numeric values from a string using regex and divides them by 10
     to normalize the direction vector components.
-    Supports both integer and floating-point numbers.
     
     Args:
         match_str (str): String containing direction values extracted from text
@@ -177,13 +176,13 @@ def parse_direction(match_str):
     Returns:
         list: List of normalized direction values as floats
     """
-    # Support floating-point numbers: -0.43, 0.71, etc.
     numbers = re.findall(r'-?\d+\.?\d*', match_str.replace(' ', ''))
+    # print("numbers:", numbers)
     return [float(num) / 10 for num in numbers]
 
 
-d_x, d_y, d_z = parse_direction(re.search(r'up direction is \[(.*?)\]', result).group(1))
-fd_x, fd_y, fd_z = parse_direction(re.search(r'forward direction is \[(.*?)\]', result).group(1))
+# d_x, d_y, d_z = parse_direction(re.search(r'up direction is \[(.*?)\]', result).group(1))
+# fd_x, fd_y, fd_z = parse_direction(re.search(r'forward direction is \[(.*?)\]', result).group(1))
 # print("d_x, d_y, d_z:", d_x, d_y, d_z)
 # print("fd_x, fd_y, fd_z:", fd_x, fd_y, fd_z)
 
