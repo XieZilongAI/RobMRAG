@@ -11,7 +11,7 @@ Existing end-to-end approaches of robotic manipulation often lack generalization
 - Experimental results demonstrate that, on a test set comprising 30 categories of household objects, the proposed method achieves a 7.76% improvement in success rate compared with the SOTA zero-shot baseline, and a 6.54% improvement compared with the SOTA supervised baseline.
 
 ## Acknowledgement
-This repo benefits from [ManipLLM](https://github.com/ToyotaResearchInstitute/ManipLLM), and [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory). Thanks for their wonderful works.
+This repo benefits from [ManipLLM](https://github.com/clorislili/ManipLLM), and [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory). Thanks for their wonderful works.
 
 ## Setup
 1) conda create --name robmrag python=3.8
